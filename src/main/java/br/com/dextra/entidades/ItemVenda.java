@@ -1,26 +1,22 @@
 package br.com.dextra.entidades;
 
-import java.math.BigDecimal;
 
 public class ItemVenda {
 
 	private String produto;
 	
-	private BigDecimal valor;
+	private Double valor;
+	
+	public ItemVenda(String produto, Double valor) {
+		this.produto = produto;
+		this.valor = valor;
+	}
 
 	public String getProduto() {
 		return produto;
 	}
 
-	public void setProduto(String produto) {
-		this.produto = produto;
-	}
-
-	public BigDecimal getValor() {
+	public Double getValor() {
 		return valor;
-	}
-
-	public void setValor(BigDecimal valor) {
-		this.valor = valor;
 	}
 }

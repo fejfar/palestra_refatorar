@@ -46,4 +46,18 @@ public class Venda {
 	public void addItem(ItemVenda itemVenda) {
 		this.itens.add(itemVenda);
 	}
+
+	public Double calcularTotal() {
+		Double total = 0.0;
+		
+		for (ItemVenda item : itens) {
+			total += item.getValor();
+		}
+		
+		return total;
+	}
+
+	public void addParcela(Parcela parcela) {
+		this.parcelas.add(parcela);
+	}
 }
