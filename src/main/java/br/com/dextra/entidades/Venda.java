@@ -47,11 +47,26 @@ public class Venda {
 		this.itens.add(itemVenda);
 	}
 
-	public Double calcularTotal() {
+	public Double calcularValorTotal() {
 		Double total = 0.0;
 		
 		for (ItemVenda item : itens) {
 			total += item.getValor();
+		}
+		
+		if (tipo == TipoVenda.A_PRAZO) {
+			Double juros;
+			
+			int quantidadeParcelas = parcelas.size();
+			if (quantidadeParcelas <= 3) {
+				juros = 0.0;
+			} else if (quantidadeParcelas <= 6) {
+				juros = 1.1;
+			} else {
+				juros = 1.15;
+			}
+			
+			total = total * juros;
 		}
 		
 		return total;

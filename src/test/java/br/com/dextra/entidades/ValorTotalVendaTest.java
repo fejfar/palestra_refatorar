@@ -7,33 +7,30 @@ import java.util.Date;
 
 import org.junit.Test;
 
-public class ValorVendaTest {
+public class ValorTotalVendaTest {
 
 	@Test
-	public void totalVendaAVista() {
+	public void testTotalVendaAVista() {
 		Venda venda = new Venda("111.111.111-11", TipoVenda.A_VISTA);
 		venda.addItem(new ItemVenda("Camisa", 50.0));
 		venda.addItem(new ItemVenda("Calca", 100.0));
 		
-		assertEquals(150.0, venda.calcularTotal(), 0.01);
+		assertEquals(150.0, venda.calcularValorTotal(), 0.01);
 	}
 	
 	@Test
-	public void totalVendaAPrazo() {
+	public void testTotalVendaAPrazo() {
 		Venda venda = new Venda("111.111.111-11", TipoVenda.A_PRAZO);
 		venda.addItem(new ItemVenda("Camisa", 50.0));
 		venda.addItem(new ItemVenda("Calca", 100.0));
-		Calendar cal = Calendar.getInstance();
-		cal.set(Calendar.YEAR, 2012);
-		cal.set(Calendar.MONTH, Calendar.JANUARY);
-		cal.set(Calendar.DAY_OF_MONTH, 1);
 		
 		venda.addParcela(new Parcela(40.0, primeiroDeJaneiro()));
 		venda.addParcela(new Parcela(40.0, primeiroDeFevereiro()));
 		venda.addParcela(new Parcela(40.0, primeiroDeMarco()));
 		venda.addParcela(new Parcela(40.0, primeiroDeAbril()));
 		
-		assertEquals(150.0, venda.calcularTotal(), 0.01);
+		Double juros = 1.10;
+		assertEquals(150.0 * juros, venda.calcularValorTotal(), 0.01);
 	}
 	
 	private Date primeiroDeJaneiro() {
